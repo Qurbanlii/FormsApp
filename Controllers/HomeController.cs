@@ -125,6 +125,23 @@ public class HomeController : Controller
             return RedirectToAction("Index");
         }
         ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
-        return View(entity);
-    }   
+        return View(model);
+    }
+
+    public IActionResult Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var entity = Repository.Products.FirstOrDefault(p => p.ProductId == id);
+        if (entity == null)
+        {
+            return NotFound();
+        }
+
+        Repository.DeleteProduct(entity);
+        return RedirectToAction("Index");
+    }
 }
