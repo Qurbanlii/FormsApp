@@ -66,8 +66,13 @@ public class HomeController : Controller
         {
             if (imageFile != null)
             {
+
                 var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
+
+                var currentDirectory = Directory.GetCurrentDirectory();
+
+                var path = Path.Combine(currentDirectory, "wwwroot/img", randomFileName);
+
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await imageFile.CopyToAsync(stream);

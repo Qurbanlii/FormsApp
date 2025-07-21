@@ -27,12 +27,15 @@
     <thead>
         <tr>
             <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products[0].ProductId)</th>
-            <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products[0].Image)</th>
+            <th style="width: 100px; height: 150px">
+                <img src="@Model.Products[0].Image" alt="Product Image" style="max-width: 100px; max-height: 150px; object-fit: fill" />
+            </th>
             <th>@Html.DisplayNameFor(m => m.Products[0].Name)</th>
             <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products[0].Price)</th>
             <th style="width: 130px;"></th>
         </tr>
     </thead>
+
     <tbody>
         @foreach(var prd in @Model.Products)
         {
